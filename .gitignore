@@ -1,0 +1,122 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# Dart/Flutter
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+
+# Android
+**/android/**/gradle-wrapper.jar
+**/android/.gradle
+**/android/captures/
+**/android/gradlew
+**/android/gradlew.bat
+**/android/local.properties
+**/android/**/GeneratedPluginRegistrant.java
+**/android/**/GeneratedPluginRegistrant.kt
+
+# iOS
+**/ios/**/Podfile.lock
+**/ios/Pods/
+**/ios/xcshareddata/
+**/ios/**/GeneratedPluginRegistrant.h
+**/ios/**/GeneratedPluginRegistrant.m
+
+# macOS
+.DS_Store
+**/ios/**/xcuserdata/
+
+# Xcode
+**/ios/**/*.xcworkspace/xcshareddata/
+**/ios/**/*.xcodeproj/project.xcworkspace/xcshareddata/
+
+# Coverage
+coverage/
+*.lcov
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.log
+*.tmp
+*.temp
+*.bak
+*.swp
+
+# Hive
+*.hiv
+*.hive
+**/app_flutter/
+
+# Testing
+test/.test_coverage.dart
+test/test_results.json
+
+# Documentation
+docs/_build/
+docs/.doctrees/
+
+# Backup files
+lib/.backup/
+
+# Analysis
+*.analysis
+.dartanalyze*
+
+# Pub
+pubspec.lock
+
+# Example specific
+example/build/
+example/.dart_tool/
+example/.flutter-plugins
+example/.flutter-plugins-dependencies
+example/.packages
+example/**/android/**/gradle-wrapper.jar
+example/**/android/.gradle
+example/**/android/captures/
+example/**/android/gradlew
+example/**/android/gradlew.bat
+example/**/android/local.properties
+example/**/ios/**/Podfile.lock
+example/**/ios/Pods/
+example/**/ios/xcshareddata/
+example/.DS_Store
+
+# CI/CD
+.github/workflows/
+.travis.yml
+.circleci/
+.gitlab-ci.yml
+appveyor.yml
+
+# Documentation build
+*.pdf
+*.epub
+*.mobi
+
+# Screenshots
+screenshots/
+
+# Generated files
+*.g.dart
+*.freezed.dart
+*.gr.dart
+*.mocks.dart

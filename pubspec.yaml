@@ -1,0 +1,59 @@
+name: batik
+description: >
+  Batik - A model-agnostic Flutter framework for agent-driven UI generation.
+  Inspired by Google Gemini's GenUI SDK but built to be LLM-provider agnostic,
+  extensible, and production-ready. Features include streaming, diff-aware rendering,
+  animations, multi-agent orchestration, and a comprehensive plugin system.
+  Integrates with Wayang Assistant API for backend AI support.
+version: 0.1.0
+homepage: https://github.com/bhangun/batik
+repository: https://github.com/bhangun/batik
+issue_tracker: https://github.com/bhangun/batik/issues
+
+# For local development, do not publish
+publish_to: none
+
+# Uncomment and update when ready to publish to pub.dev:
+# publish_to: none  # or remove this line to publish to pub.dev
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: ">=3.10.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_riverpod: ^2.4.9
+  flutter_animate: ^4.3.0
+  # JSON handling
+  json_annotation: ^4.8.1
+  # Reactive state
+  equatable: ^2.0.5
+  # HTTP (optional, for built-in adapters)
+  http: ^1.1.0
+  # Logging
+  logging: ^1.2.0
+  # WebSocket support
+  web_socket_channel: ^2.4.0
+  # Local storage for session persistence
+  hive_flutter: ^1.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  build_runner: ^2.4.6
+  json_serializable: ^6.7.1
+  flutter_lints: ^3.0.0
+  mockito: ^5.4.4
+  hive: ^2.2.3
+
+flutter:
+  uses-material-design: true
+
+# Topics for pub.dev (when published)
+topics:
+  - ai
+  - agent
+  - ui
+  - flutter
+  - workflow

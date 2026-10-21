@@ -1,0 +1,199 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://agent-ui-kit.dev/schema/1.0.0",
+  "title": "AgentUIKit Response Envelope",
+  "description": "Schema for agent-generated UI trees in AgentUIKit v1.0.0",
+  "type": "object",
+  "required": ["schemaVersion", "root"],
+  "properties": {
+    "schemaVersion": { "type": "string", "example": "1.0.0" },
+    "sessionId": { "type": "string" },
+    "turnId": { "type": "string" },
+    "metadata": { "type": "object", "additionalProperties": true },
+    "root": { "$ref": "#/$defs/UINode" }
+  },
+  "$defs": {
+    "UINode": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "container", "row", "column", "stack",
+            "text", "richText", "image", "icon", "markdown",
+            "button", "iconButton", "textField", "switch", "slider", "dropdown",
+            "card", "list", "listItem", "grid", "form",
+            "scaffold", "appBar", "bottomNav", "fab",
+            "dialog", "snackbar",
+            "divider", "spacer", "badge", "chip", "avatar", "progressBar",
+            "chart", "map", "webview", "custom"
+          ]
+        },
+        "id": { "type": "string" },
+        "condition": { "type": "string", "description": "VariableStore key for conditional visibility" },
+        "style": { "$ref": "#/$defs/UIStyle" },
+        "actions": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/$defs/UIAction" },
+          "description": "Map of event names to actions. Common events: onTap, onChange, onSubmit, onDelete"
+        },
+        "children": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/UINode" }
+        },
+        "text": { "type": "string", "description": "For 'text' nodes" },
+        "variant": {
+          "type": "string",
+          "description": "Text: displayLarge/headlineMedium/bodySmall/etc. Button: elevated/filled/outlined/text/tonal. Chip: action/filter/input. Progress: linear/circular."
+        },
+        "src": { "type": "string", "description": "For 'image' nodes: URL, asset path, or data URI" },
+        "icon": { "type": "string", "description": "Icon name: home/search/settings/star/add/etc." },
+        "label": { "type": "string" },
+        "value": {},
+        "placeholder": { "type": "string" },
+        "disabled": { "type": "boolean" },
+        "loading": { "type": "boolean" },
+        "variableBinding": { "type": "string", "description": "VariableStore key for two-way binding" },
+        "min": { "type": "number" },
+        "max": { "type": "number" },
+        "divisions": { "type": "integer" },
+        "options": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["label", "value"],
+            "properties": {
+              "label": { "type": "string" },
+              "value": { "type": "string" }
+            }
+          }
+        },
+        "elevation": { "type": "number" },
+        "borderRadius": { "type": "number" },
+        "mainAxisAlignment": {
+          "type": "string",
+          "enum": ["start", "end", "center", "spaceBetween", "spaceAround", "spaceEvenly"]
+        },
+        "crossAxisAlignment": {
+          "type": "string",
+          "enum": ["start", "end", "center", "stretch", "baseline"]
+        },
+        "mainAxisSize": { "type": "string", "enum": ["min", "max"] },
+        "scrollDirection": { "type": "string", "enum": ["vertical", "horizontal"] },
+        "shrinkWrap": { "type": "boolean" },
+        "crossAxisCount": { "type": "integer" },
+        "childAspectRatio": { "type": "number" },
+        "mainAxisSpacing": { "type": "number" },
+        "crossAxisSpacing": { "type": "number" },
+        "backgroundColor": { "type": "string" },
+        "foregroundColor": { "type": "string" },
+        "title": { "$ref": "#/$defs/UINode" },
+        "body": { "$ref": "#/$defs/UINode" },
+        "leading": { "$ref": "#/$defs/UINode" },
+        "trailing": { "$ref": "#/$defs/UINode" },
+        "subtitle": { "$ref": "#/$defs/UINode" },
+        "appBar": { "$ref": "#/$defs/UINode" },
+        "bottomNav": { "$ref": "#/$defs/UINode" },
+        "fab": { "$ref": "#/$defs/UINode" },
+        "drawer": { "$ref": "#/$defs/UINode" },
+        "content": { "type": "string", "description": "For 'markdown' nodes" },
+        "message": { "type": "string", "description": "For 'snackbar' nodes" },
+        "componentId": { "type": "string", "description": "For 'custom' nodes" },
+        "props": { "type": "object", "description": "For 'custom' nodes: arbitrary props" },
+        "chartType": {
+          "type": "string",
+          "enum": ["bar", "line", "pie", "scatter"],
+          "description": "For 'chart' nodes"
+        },
+        "data": { "type": "object", "description": "For 'chart' nodes: dataset" },
+        "lat": { "type": "number", "description": "For 'map' nodes" },
+        "lng": { "type": "number", "description": "For 'map' nodes" },
+        "zoom": { "type": "number" },
+        "url": { "type": "string", "description": "For 'webview' nodes" },
+        "initials": { "type": "string", "description": "For 'avatar' nodes" },
+        "size": { "type": "number" }
+      }
+    },
+    "UIStyle": {
+      "type": "object",
+      "properties": {
+        "backgroundColor": { "type": "string", "description": "Hex (#RGB/#RRGGBB/#AARRGGBB) or named color" },
+        "foregroundColor": { "type": "string" },
+        "borderColor": { "type": "string" },
+        "borderRadius": { "type": "number" },
+        "borderWidth": { "type": "number" },
+        "padding": { "$ref": "#/$defs/UIInsets" },
+        "margin": { "$ref": "#/$defs/UIInsets" },
+        "width": { "type": "number" },
+        "height": { "type": "number" },
+        "minWidth": { "type": "number" },
+        "maxWidth": { "type": "number" },
+        "minHeight": { "type": "number" },
+        "maxHeight": { "type": "number" },
+        "opacity": { "type": "number", "minimum": 0, "maximum": 1 },
+        "elevation": { "type": "number" },
+        "fontSize": { "type": "number" },
+        "fontWeight": {
+          "type": "string",
+          "enum": ["normal", "bold", "thin", "light", "medium", "semiBold", "extraBold", "black",
+                   "w100", "w200", "w300", "w400", "w500", "w600", "w700", "w800", "w900"]
+        },
+        "fontFamily": { "type": "string" },
+        "letterSpacing": { "type": "number" },
+        "lineHeight": { "type": "number" },
+        "textAlign": { "type": "string", "enum": ["left", "right", "center", "justify", "start", "end"] },
+        "overflow": { "type": "string", "enum": ["clip", "ellipsis", "fade", "visible"] },
+        "flex": { "type": "integer" },
+        "alignment": {
+          "type": "string",
+          "enum": ["topLeft", "topCenter", "topRight", "centerLeft", "center",
+                   "centerRight", "bottomLeft", "bottomCenter", "bottomRight"]
+        },
+        "shadow": {
+          "type": "object",
+          "properties": {
+            "color": { "type": "string" },
+            "blurRadius": { "type": "number" },
+            "offsetX": { "type": "number" },
+            "offsetY": { "type": "number" }
+          }
+        },
+        "gradient": {
+          "type": "object",
+          "required": ["type", "colors"],
+          "properties": {
+            "type": { "type": "string", "enum": ["linear", "radial"] },
+            "colors": { "type": "array", "items": { "type": "string" }, "minItems": 2 },
+            "stops": { "type": "array", "items": { "type": "number" } },
+            "angle": { "type": "number", "description": "Degrees, 0=right, 90=down" }
+          }
+        }
+      }
+    },
+    "UIInsets": {
+      "type": "object",
+      "properties": {
+        "all": { "type": "number" },
+        "top": { "type": "number" },
+        "right": { "type": "number" },
+        "bottom": { "type": "number" },
+        "left": { "type": "number" }
+      }
+    },
+    "UIAction": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["agentMessage", "navigate", "setVariable", "openUrl", "dismiss", "submitForm", "showDialog", "showSnackbar", "custom"]
+        },
+        "payload": {
+          "type": "object",
+          "description": "Action-specific data. agentMessage:{message}, navigate:{route}, setVariable:{key,value}, openUrl:{url}, custom:{handler,...}"
+        }
+      }
+    }
+  }
+}
